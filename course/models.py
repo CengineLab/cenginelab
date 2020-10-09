@@ -3,14 +3,14 @@ from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 # Create your models here.
 
-User = get_user_model
+User = get_user_model()
 
 class Course(models.Model):
     """Model instance to represent a course on the website"""
     created_by = models.ForeignKey(User, related_name="created_courses", on_delete=models.CASCADE)
     title = models.CharField(max_length=500)
     description = models.TextField()
-    picture = models.ImageField(upload_to="/courses/pictures/%Y/%m/")
+    picture = models.ImageField(upload_to="courses/pictures/%Y/%m/")
     slug = models.SlugField(blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -37,7 +37,7 @@ class Episode(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ("date_created")
+        ordering = ("date_created",)
     
     def __str__(self) -> str:
         return self.title
@@ -53,7 +53,7 @@ class Episode(models.Model):
 
 class EpisodeComment(models.Model):
     user = models.ForeignKey(User, related_name="episode_comments", on_delete=models.CASCADE)
-    comment = models.TextFields()
+    comment = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
