@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # Local
     'accounts',
     'pages',
+    "course",
 ]
 
 # MIDDLEWARE
