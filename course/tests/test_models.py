@@ -20,6 +20,12 @@ class BaseTestDataSetup:
             description="some description",
             picture="/media/some_picture.jpg",
         )
+        self.episode = Episode.objects.create(
+            course=self.course,
+            title="title",
+            description="some description",
+            youtube_video_link="https://youtube.com/somerandomlink/",
+        )
 
 
 # -----------------------------------------
@@ -59,7 +65,7 @@ class EpisodeTest(BaseTestDataSetup, TestCase):
                 "course": self.course,
                 "title": "title",
                 "description": "some description",
-                "youtube_video_link": "https://youtube.com/somerandomlink/"
+                "youtube_video_link": "https://youtube.com/somerandomlink/",
             },
         ]
         for test in tests:
@@ -68,3 +74,22 @@ class EpisodeTest(BaseTestDataSetup, TestCase):
             self.assertEqual(episode.description, test["description"])
             self.assertEqual(episode.course, test["course"])
             self.assertEqual(episode.slug, slugify(test["title"]))
+
+
+class EpisodeCommentTest(BaseTestDataSetup, TestCase):
+    def setUp(self) -> None:
+        super().setUpdata()
+
+    def test_course_data(self):
+        tests = [
+            {
+                "episode": self.episode,
+                "user": self.user,
+                "comment": "some description",
+            },
+        ]
+        for test in tests:
+            episodecomment = EpisodeComment.objects.create(**test)
+            self.assertEqual(episodecomment.episode, test["episode"])
+            self.assertEqual(episodecomment.comment, test["comment"])
+            self.assertEqual(episodecomment.user, test["user"])

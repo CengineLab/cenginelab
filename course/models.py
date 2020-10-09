@@ -53,6 +53,7 @@ class Episode(models.Model):
 
 class EpisodeComment(models.Model):
     user = models.ForeignKey(User, related_name="episode_comments", on_delete=models.CASCADE)
+    episode = models.ForeignKey(Episode, related_name="comments", on_delete=models.CASCADE)
     comment = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
