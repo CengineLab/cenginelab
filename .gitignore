@@ -10,3 +10,13 @@ __pycache__/
 *.log
 db.sqlite3
 media
+venv/*
+venv/
+venv
+*/venv/
+media/*
+.env/
+env/*
+env
+*/__pycache__/*
+*/__pycache__
