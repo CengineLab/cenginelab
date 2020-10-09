@@ -42,7 +42,29 @@ class CourseTest(BaseTestDataSetup, TestCase):
         ]
         for test in tests:
             course = Course.objects.create(**test)
+            self.assertEqual(course.created_by, test["created_by"])
             self.assertEqual(course.title, test["title"])
             self.assertEqual(course.description, test["description"])
             self.assertEqual(course.picture, test["picture"])
             self.assertEqual(course.slug, slugify(test["title"]))
+
+
+class EpisodeTest(BaseTestDataSetup, TestCase):
+    def setUp(self) -> None:
+        super().setUpdata()
+
+    def test_course_data(self):
+        tests = [
+            {
+                "course": self.course,
+                "title": "title",
+                "description": "some description",
+                "youtube_video_link": "https://youtube.com/somerandomlink/"
+            },
+        ]
+        for test in tests:
+            episode = Episode.objects.create(**test)
+            self.assertEqual(episode.title, test["title"])
+            self.assertEqual(episode.description, test["description"])
+            self.assertEqual(episode.course, test["course"])
+            self.assertEqual(episode.slug, slugify(test["title"]))
