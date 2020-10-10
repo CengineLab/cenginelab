@@ -15,6 +15,9 @@ class Course(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ("-date_created", "title",)
+
     def __str__(self) -> str:
         return self.title
 
