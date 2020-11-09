@@ -1,0 +1,30 @@
+*{
+    scrollbar-width: thin !important;
+    scrollbar-color: #888 red !important;
+    scroll-behavior: smooth;
+    scroll-padding: 1px !important;
+}
+#header,
+caption {
+    background: rgb(255, 144, 53)!important;
+}
+
+.breadcrumbs {
+    background: rgb(175, 115, 66) !important;
+    margin-bottom: 5px !important;
+    
+}
+#nav-sidebar{
+    padding-top: 20px !important;
+}
+
+#changelist-filter h2,
+input[type="submit"],
+button[type="submit"] {
+    background: rgba(255, 144, 53) !important;
+    color: white !important;
+}
+
+#head {
+    color: white !important;
+}

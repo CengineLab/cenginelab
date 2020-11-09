@@ -2,15 +2,8 @@
 <div class="container">
     <div class="row">
         {% for course in courses %}
-        <div class="col-md-4 col-lg-3">
-            <div class="card">
-                <div class="card-header">
-                    {{ course.title}}
-                </div>
-                <div class="card-body">
-                    <p>{{ course.description</p>
-                </div>
-            </div>
+        <div class="col-md-6">
+            {% include "course/_partials/_course_card.html" %}
         </div>
         {% empty %}
         <div class="col-12 py-3">
