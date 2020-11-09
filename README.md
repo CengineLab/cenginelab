@@ -161,7 +161,7 @@ NB: You still need to have a GitHub account.
 
 ### Improve Cenginelab by making commits:
 
-5. `git commit -am "math: add a new function copysign"`
+5. `git commit -am "accounts: Add user signup page"`
 
 ### Testing your commits locally:
 You can test locally whether your changes have not broken something by
