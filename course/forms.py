@@ -1,5 +1,5 @@
 from django import forms
-from .models import Course, Episode, EpisodeComment
+from .models import Course, Episode, EpisodeComment, Step
 
 class CourseForm(forms.ModelForm):
     class Meta:
@@ -16,3 +16,9 @@ class EpisodeCommentForm(forms.ModelForm):
     class Meta:
         model = EpisodeComment
         fields = ("comment",)
+
+class StepForm(forms.ModelForm):
+    class Meta:
+        model = Step
+        fields = ("title", "content", "timestamp",)
+    

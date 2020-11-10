@@ -59,9 +59,10 @@ body {
 
 .markdown img{
     width: 100%;
-    object-fit: cover;
-    max-height: 250px;
-    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    height: unset;
+    max-height: 300px;
 }
 
 .codehilite{

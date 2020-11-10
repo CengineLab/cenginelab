@@ -3,7 +3,8 @@ from django.utils.html import mark_safe
 from .models import (
     Course, CourseImage,
     Episode,
-    EpisodeComment, Step, StepContent,
+    EpisodeComment, 
+    Step, 
 )
 
 # Register your models here.
@@ -65,5 +66,4 @@ class StepAdmin(admin.ModelAdmin):
     list_display = ["title", "episode"]
     search_fields = ["title"]
 
-admin.site.register(StepContent)
 admin.site.register(CourseImage)
