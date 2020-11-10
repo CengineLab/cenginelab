@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from .models import (
-    Course,
+    Course, CourseImage,
     Episode,
-    EpisodeComment,
+    EpisodeComment, Step, StepContent,
 )
 
 # Register your models here.
@@ -59,3 +59,11 @@ class CourseAdmin(ImageAdmin):
     list_display = ["title", "created_by"]
     prepopulated_fields = {"slug": ["title", "created_by"]}
     raw_id_fields = ["created_by",]
+
+@admin.register(Step)
+class StepAdmin(admin.ModelAdmin):
+    list_display = ["title", "episode"]
+    search_fields = ["title"]
+
+admin.site.register(StepContent)
+admin.site.register(CourseImage)
