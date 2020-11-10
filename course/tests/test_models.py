@@ -24,7 +24,7 @@ class BaseTestDataSetup:
             course=self.course,
             title="title",
             description="some description",
-            youtube_video_link="https://youtube.com/somerandomlink/",
+            youtube_video="https://youtube.com/somerandomlink/",
         )
 
 
@@ -65,7 +65,7 @@ class EpisodeTest(BaseTestDataSetup, TestCase):
                 "course": self.course,
                 "title": "title",
                 "description": "some description",
-                "youtube_video_link": "https://youtube.com/somerandomlink/",
+                "youtube_video": "https://youtube.com/somerandomlink/",
             },
         ]
         for test in tests:

@@ -40,7 +40,10 @@ class Course(models.Model):
 
     def get_absolute_url(self) -> str:
         return reverse("course:course-detail", kwargs={"slug": self.slug})
-
+    
+    def get_edit_url(self) -> str:
+        return reverse("course:edit-course", kwargs={"course_id": self.pk })
+    
 
 class CourseImage(models.Model):
     def get_upload_to(instance, filename):
@@ -85,6 +88,9 @@ class Episode(models.Model):
 
     def get_absolute_url(self) -> str:
         return reverse("course:episode-detail", kwargs={"pk": self.pk})
+    
+    def get_edit_url(self) -> str:
+        return reverse("course:edit-episode", kwargs={"slug": self.course.slug, "episode_id": self.pk })
 
     def next(self) -> "Episode":
         return self.course.episodes.filter(date_created__gt=self.date_created).first()
@@ -98,27 +104,21 @@ class Step(models.Model):
         Episode, related_name="steps", on_delete=models.CASCADE, blank=True, null=True
     )
     title = models.CharField(max_length=250)
-    timestamp = models.CharField(
-        max_length=8, blank=True, help_text="Time stamp on youtube video"
+    timestamp = models.TimeField(null=True, blank=True)
+    content = models.TextField(
+        help_text="This uses markdown format"
     )
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ("date_created",)
+    
+    def __str__(self):
+        return self.title
 
-
-class StepContent(models.Model):
-    step = models.ForeignKey(Step, related_name="contents", on_delete=models.CASCADE)
-    youtube_video = models.URLField(blank=True, null=True)
-    text = models.TextField(
-        blank=True, null=True, help_text="This uses markdown format"
-    )
-    date_created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ("date_created",)
+    def get_edit_url(self) -> str:
+        return reverse("course:edit-step", kwargs={"slug": self.episode.course.slug, "episode_id": self.episode.pk, "step_id": self.pk})
 
 
 class EpisodeComment(models.Model):
