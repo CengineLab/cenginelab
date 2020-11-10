@@ -26,7 +26,7 @@ class EpisodeDetailView(DetailView):
     template_name = "course/episode_detail.html"
 
 
-
+@login_required
 def add_course(request : HttpRequest, course_id: int = None):
     course = None
     if course_id:
@@ -42,7 +42,7 @@ def add_course(request : HttpRequest, course_id: int = None):
         course_form = CourseForm(instance=course)
     return render(request, "course/course_create.html", {"course_form": course_form})
 
-
+@login_required
 def add_episode(request: HttpRequest, slug: str, episode_id: int=None):
     course = get_object_or_404(models.Course, created_by=request.user, slug=slug)
     episode = None
@@ -62,7 +62,7 @@ def add_episode(request: HttpRequest, slug: str, episode_id: int=None):
         episode_form = EpisodeForm(instance=episode)
     return render(request, "course/episode_create.html", {'episode_form': episode_form})
     
-
+@login_required
 def add_step(request,  slug: str, episode_id: int, step_id: int = None):
     course = get_object_or_404(models.Course, created_by=request.user, slug=slug)
     episode = get_object_or_404(models.Episode, course=course, pk = episode_id)
