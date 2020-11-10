@@ -128,7 +128,7 @@
                         <hr>
                         
                     </div>
-                    <a href="{% url 'course:add-step' episode.course.slug episode.id %}" class="btn btn-primary">Add a step</a>
+                    <a href="{% url 'course:add-step' episode.course.slug episode.id %}" class="btn btn-primary">Add a step</a> <a class="btn btn-primary ml-1" href="{{ step.get_edit_url }}">Edit</a>
                 </div>
 
                 {% for step in episode.steps.all %}
@@ -138,7 +138,10 @@
                     </div>
                     <div class="card-body pt-0">
                         {{ step.content|markdown }}
+                        <p class="mb-0 mt-2"><a class="btn btn-primary" href="{{ step.get_edit_url }}">Edit</a></p>
                     </div>
+
+
                 </div>
                 {% empty %}
                 <h5>There are no steps here </h5>
