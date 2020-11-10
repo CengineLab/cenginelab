@@ -1,0 +1,141 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="d-none d-md-block col-md-4 col-lg-4 col-xl-3 px-0">
+            <div class="shadow-sm bg-white">
+                <div class="py-5"
+                    style="background: url('{{ course.picture.url }}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+                    <div class="py-5"></div>
+                </div>
+                <div class="container py-3">
+                    <h3 class="">{{ course.title }}</h3>
+                    <hr>
+
+                    <a class="btn btn-success" href="{% url 'course:add-episode' course.slug %}">Add Episode</a>
+                    <div id="accordion-1">
+                        {% for episode in course.episodes.all %}
+                        <div class="card my-3">
+                            <div class="card-header bg-custom-secondary text-white"
+                                id="headingOne-episode-{{episode.id}}" data-toggle="collapse"
+                                data-target="#collapse-episode-{{episode.id}}" aria-expanded="false"
+                                aria-controls="collapse-episode-{{episode.id}}">
+                                <h6 class="mb-0">
+                                    {{ episode.title }}
+                                </h6>
+                            </div>
+
+                            <div id="collapse-episode-{{episode.id}}" class="collapse"
+                                aria-labelledby="headingOne-episode-{{episode.id}}" data-parent="#accordion-1">
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        {% for step in episode.steps.all %}
+                                        <li class="py-2">{{ step.title }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <a href="{{ episode.get_absolute_url }}" class="btn btn-secondary">Go to episode</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12 py-3">
+                            <p class="text-danger">Sorry, No courses are available.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="d-block d-md-none col-md-4 col-lg-3 px-0">
+
+            <div class="shadow-sm bg-white">
+                <div class="py-5"
+                    style="background: url('{{ course.picture.url }}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+                    <div class="py-5"></div>
+                </div>
+                <div class="container py-3">
+                    <div class="d-flex flex-row justify-content-between pb-2">
+                        <h3 class="">{{ course.title }}</h3>
+                        <a class="ml-3 btn bg-custom-secondary text-white" data-toggle="collapse"
+                            href="#collapse-course-nav" role="button" aria-expanded="false"
+                            aria-controls="collapse-course-nav">
+                            Nav
+                        </a>
+
+                    </div>
+                    <div class="collapse pt-3" id="collapse-course-nav">
+                        <a class="btn btn-success" href="{% url 'course:add-episode' course.slug %}">Add Episode</a>
+                        <div id="course-accordion-2">
+                            {% for episode in course.episodes.all %}
+                            <div class="card my-3">
+                                <div class="card-header bg-custom-secondary text-white"
+                                    id="headingOne-2-episode-{{episode.id}}" data-toggle="collapse"
+                                    data-target="#collapse-2-episode-{{episode.id}}" aria-expanded="false"
+                                    aria-controls="collapse-2-episode-{{episode.id}}">
+                                    <h6 class="mb-0">
+                                        {{ episode.title }}
+                                    </h6>
+                                </div>
+
+                                <div id="collapse-2-episode-{{episode.id}}" class="collapse"
+                                    aria-labelledby="headingOne-2-episode-{{episode.id}}" data-parent="#course-accordion-2">
+                                    <div class="card-body">
+                                        <ul class="list-unstyled">
+                                            {% for step in episode.steps.all %}
+                                            <li class="py-2">{{ step.title }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        <a href="{{ episode.get_absolute_url }}" class="btn btn-secondary">Go to
+                                            episode</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="col-12 py-3">
+                                <p class="text-danger">Sorry, No courses are available.</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-8 col-lg-8 col-xl-9">
+
+            <div class="container py-4">
+
+                <div class="shadow bg-white p-4">
+                    <div class="container">
+                        <h5>Description</h5>
+                        <hr>
+                        <p>{{ course.description }}</p>
+                    </div>
+                </div>
+                <div class=" mt-5 shadow bg-white p-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <h5>Go to first Episode</h5>
+                                <p class="ml-2 color-custom-primary">&gt; {{ course.episodes.first.title }}</p>
+                            </div>
+                            <div class="col-md-6 ">
+                                <a href="{{ course.episodes.first.get_absolute_url }}"
+                                    class="btn btn-large bg-custom-secondary text-white float-right">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
