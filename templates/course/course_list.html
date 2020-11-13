@@ -1,0 +1,15 @@
+{% extends "_base.html" %} {% block content %}
+<div class="container">
+    <div class="row">
+        {% for course in courses %}
+        <div class="col-md-6 py-3">
+            {% include "course/_partials/_course_card.html" %}
+        </div>
+        {% empty %}
+        <div class="col-12 py-3">
+            <p class="text-danger">Sorry, No courses are available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
