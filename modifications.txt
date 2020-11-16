@@ -1,0 +1,29 @@
+#================================ Features to add or modify  =========================================
+** The navbars(i.e main-nav and sub-nav) must be sticky
+
+1. Make sure after creating a course, you should be redirected to the courses page.
+2. Both the course title and the Learn button should redirect the user to the course-details page.
+3. On the course_details page and course_episodes page only a course admin should see buttons like:
+    -- Add Episode boutton
+    -- Edit button
+    -- Add a step button
+4. The course_card should be re-dimentioned to accomodate three courses on a row
+5. Instead of a ( Join ) button, lets have a (Learn) button. i.e for free courses
+    --  Anyone who clicks the (Learn) button should have that course reflecting on his dashboard
+    --  We can also implement progress status (i.e what percentage of the course you have completed.)
+6. For paid courses, lets have a (Register Course) button insted.
+7. A delete button to delete a course Episode and a delete button to delete a step of an episode.
+8. If you click on an episode, the drop-down list should be links that sends you straight to the episode
+#===================================== Suggestions ===================================================
+We should create a base structure for :
+    * course details page
+    * course episode page
+
+We have to implement a functionality where we can identify a course admin and give certain previleges.
+
+We can also implement React for the sub-navs so that we can minimize loading the whole page all the time.
+That's for pages like Course_details and Course_episodes
+
+Implement a registeration page for people who want to be Course Admins or Course Tutors
+
+Implement a profile page

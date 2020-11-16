@@ -3,13 +3,15 @@
         <img class="img-default" src="{{ course.picture.url }}" alt="course image">
     </div>
     <div class="card-header  bg-white">
-        <a class="text-primary text-bold" href="{{ course.get_absolute_url }}">{{ course.title }}</a>
-        <p class="p-0 m-0">{{ course.description|truncatechars:30 }}</p>
+        <a class="text-primary text-bold" href="{{ course.get_absolute_url }}">
+            {{ course.title }} &nbsp <span style="background-color: green; color: white"> Free </span>
+        </a>
+        <p class="p-0 m-0">{{ course.description|truncatechars:50 }}</p>
     </div>
 
     <div class="card-body py-1 bg-white">
         <div class="d-flex justify-content-between">
-            <a href="{{ course.join_url }}" class="btn btn-outline-primary">Join</a>
+            <a href="{{ course.get_absolute_url }}" class="btn btn-outline-primary"> Learn </a> <!-- href was course.join -->
         </div>
     </div>
 </div>

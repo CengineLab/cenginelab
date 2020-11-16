@@ -1,27 +1,21 @@
 {% extends "_base.html" %}
-
-{% load markdown %}
-
 {% block content %}
-
-<!-- This part is already implemented in course_base.html -->
 <div class="container-fluid">
 
     <div class="row">
-
-        <div class="d-none d-md-block col-md-4 col-lg-3 px-0">
+        <div class="d-none d-md-block col-md-4 col-lg-4 col-xl-3 px-0">
             <div class="shadow-sm bg-white">
                 <div class="py-5"
-                    style="background: url('{{ episode.course.picture.url }}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
-                    <div class="py-5"></div>
+                    style="background: url('{{ course.picture.url }}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+                    <div class="py-5"></div> <!-- bg_url changes-->
                 </div>
                 <div class="container py-3">
-                    <h3 class="">{{ episode.course.title }}</h3>
+                    <h3 class="">{{ course.title }}</h3> <!-- this changes-->
                     <hr>
 
-                    <a class="btn btn-success" href="{% url 'course:add-episode' episode.course.slug %}">Add Episode</a>
+                    <a class="btn btn-success" href="{% url 'course:add-episode' course.slug %}">Add Episode</a> <!-- href changes-->
                     <div id="accordion-1">
-                        {% for episode in episode.course.episodes.all %}
+                        {% for episode in course.episodes.all %}
                         <div class="card my-3">
                             <div class="card-header bg-custom-secondary text-white"
                                 id="headingOne-episode-{{episode.id}}" data-toggle="collapse"
@@ -46,7 +40,7 @@
                         </div>
                         {% empty %}
                         <div class="col-12 py-3">
-                            <p class="text-danger">Sorry, No courses are available.</p>
+                            <p class="text-danger">Sorry, No episodes are available.</p>
                         </div>
                         {% endfor %}
                     </div>
@@ -54,29 +48,29 @@
             </div>
         </div>
 
-        
+
+<!-- This section works on small devices or small screens -->
         <div class="d-block d-md-none col-md-4 col-lg-3 px-0">
             <div class="shadow-sm bg-white">
                 <div class="py-5"
-                    style="background: url('{{ episode.course.picture.url }}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+                    style="background: url('{{ course.picture.url }}'); background-position: center; background-size: cover; background-repeat: no-repeat;"> <!-- url changes but does the same job-->
                     <div class="py-5"></div>
                 </div>
                 <div class="container py-3">
-                    <div class="d-flex flex-row justify-content-between align-items-center pb-2">
-                        <h4 class="m-0 mr-1">{{ episode.course.title }}</h4>
-                        <nav class="navbar navbar-light bg-light m-0 p-0">
-                        <a class="m-0  navbar-toggler btn " data-toggle="collapse"
+                    <div class="d-flex flex-row justify-content-between pb-2">
+                        <h3 class="">{{ course.title }}</h3> <!-- this changes but does the same job-->
+                        <!-- this should be implimented to work as a side nav in the main nav -->
+                        <a class="ml-3 btn bg-custom-secondary text-white" data-toggle="collapse"
                             href="#collapse-course-nav" role="button" aria-expanded="false"
                             aria-controls="collapse-course-nav">
-                            <span class="navbar-toggler-icon "></span>
+                            Nav
                         </a>
-                        </nav>
                     </div>
 
                     <div class="collapse pt-3" id="collapse-course-nav">
-                        <a class="btn btn-success" href="{% url 'course:add-episode' episode.course.slug %}">Add Episode</a>
+                        <a class="btn btn-success" href="{% url 'course:add-episode' course.slug %}">Add Episode</a> <!-- url changes but does the same job-->
                         <div id="course-accordion-2">
-                            {% for episode in episode.course.episodes.all %}
+                            {% for episode in course.episodes.all %} <!-- this changes but does the same job-->
                             <div class="card my-3">
                                 <div class="card-header bg-custom-secondary text-white"
                                     id="headingOne-2-episode-{{episode.id}}" data-toggle="collapse"
@@ -88,8 +82,7 @@
                                 </div>
 
                                 <div id="collapse-2-episode-{{episode.id}}" class="collapse"
-                                    aria-labelledby="headingOne-2-episode-{{episode.id}}"
-                                    data-parent="#course-accordion-2">
+                                    aria-labelledby="headingOne-2-episode-{{episode.id}}" data-parent="#course-accordion-2">
                                     <div class="card-body">
                                         <ul class="list-unstyled">
                                             {% for step in episode.steps.all %}
@@ -112,15 +105,15 @@
         </div>
 
 
-        <div class="col-md-8 col-lg-9 ">
-            
+        <div class="col-md-8 col-lg-9">
+<!-- This section describes the sub-nav: We can implement React if necessary -->
             <div class="row align-items-center">
                 <div class="col-5">
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Course</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="#">Episode1</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="#">Courses</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -131,67 +124,11 @@
                     </div>
                 </div>
             </div>
-<!-- This is the end: already in course_base.html -->
 
-<!-- This part should be for course_details_or_episodes block -->
-            <div class="containe py-4">
-                {% if episode.prev %}
-                            <p class="mb-0">Previous Episode</p>
-                            <a href="{{ episode.prev.get_absolute_url }}">
-                                <h5 class="color-custom-primary mb-0 ml-1">{{ episode.prev.title }} &lt;</h5>
-                            </a>
-                {% endif %}
-                <div class="p-2 ">
-                    <div class="col">
+            {% block course_details_or_episodes %}
 
-                        <h1 class="color-custom-secondary">{{ episode.title }}</h1>
-                        <hr>
-                        
-                    </div>
-                    <a href="{% url 'course:add-step' episode.course.slug episode.id %}" class="btn btn-primary">Add a step</a> 
-                    <a class="btn btn-primary ml-1" href="{{ step.get_edit_url }}">Edit</a>
-                    <a class="btn btn-danger" href="{{ step.delete }}">Delete</a>
-                </div>
-
-                {% for step in episode.steps.all %}
-                <div class="card my-4">
-                    <div class="card-header bg-custom-primary text-white">
-                        <h5>{{ step.title }}</h5>
-                    </div>
-                    <div class="card-body pt-0">
-                        {{ step.content|markdown }}
-                        <div style="display: flex;">
-                            <p class="mb-0 mt-2"><a class="btn btn-primary" href="{{ step.get_edit_url }}">Edit</a></p> &nbsp &nbsp
-                            <p class="mb-0 mt-2"><a class="btn btn-danger" href="{{ step.delete }}">Delete</a></p>
-                        </div>
-                    </div>
-
-
-                </div>
-                {% empty %}
-                <h5>There are no steps here </h5>
-                {% endfor %}
-            </div>
-
-            {% if episode.next %}
-            <div class=" mt-5 shadow bg-white p-4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <h5>Go to Next Episode</h5>
-                            <p class=" color-custom-primary ml-2">&gt; {{ episode.next.title }}</p>
-                        </div>
-                        <div class="col-md-6 ">
-                            <a href="{{ episode.next.get_absolute_url }}"
-                                class="btn btn-large bg-custom-secondary text-white float-right">&gt; Go</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-<!-- This is the end of whats needed -->
-
+            {% endblock %}
+             
         </div>
     </div>
 </div>

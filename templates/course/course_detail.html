@@ -40,18 +40,16 @@
                         </div>
                         {% empty %}
                         <div class="col-12 py-3">
-                            <p class="text-danger">Sorry, No courses are available.</p>
+                            <p class="text-danger">Sorry, No episodes are available.</p>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
-
-
             </div>
         </div>
 
-        <div class="d-block d-md-none col-md-4 col-lg-3 px-0">
 
+        <div class="d-block d-md-none col-md-4 col-lg-3 px-0">
             <div class="shadow-sm bg-white">
                 <div class="py-5"
                     style="background: url('{{ course.picture.url }}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
@@ -89,8 +87,7 @@
                                             <li class="py-2">{{ step.title }}</li>
                                             {% endfor %}
                                         </ul>
-                                        <a href="{{ episode.get_absolute_url }}" class="btn btn-secondary">Go to
-                                            episode</a>
+                                        <a href="{{ episode.get_absolute_url }}" class="btn btn-secondary">Go to episode</a>
                                     </div>
                                 </div>
                             </div>
@@ -106,18 +103,39 @@
         </div>
 
 
-
         <div class="col-md-8 col-lg-8 col-xl-9">
+            <!-- <div class="container py-4">-->
+                <div class="page-breadcrumb">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <div class="d-flex align-items-center">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Course</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="#">Description</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="text-right upgrade-btn">
+                                <a href="#" class="btn btn-danger text-white" target="_blank">Upgrade to Pro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!-- This is the end: already in course_base.html -->
 
-            <div class="container py-4">
-
+<!-- This part should be for course_details_or_episodes block -->
                 <div class="shadow bg-white p-4">
                     <div class="container">
                         <h5>Description</h5>
                         <hr>
                         <p>{{ course.description }}</p>
-                        <p class="mb-0 mt-2"><a class="btn btn-primary" href="{{ course.get_edit_url }}">Edit</a></p>
-
+                        <div style="display: flex;">
+                            <p class="mb-0 mt-2"><a class="btn btn-primary" href="{{ course.get_edit_url }}">Edit</a></p> &nbsp &nbsp
+                            <p class="mb-0 mt-2"><a class="btn btn-danger" href="{{ course.delete }}">Delete</a></p>
+                        </div>
                     </div>
                 </div>
                 <div class=" mt-5 shadow bg-white p-4">
@@ -136,7 +154,7 @@
                     </div>
                 </div>
 
-            </div>
+            <!-- </div> -->
         </div>
     </div>
 </div>
