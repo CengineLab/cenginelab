@@ -1,0 +1,37 @@
+{% extends '_base.html' %}
+
+{% block title %} Register tutor {% endblock %}
+
+{% block content %}
+<br>
+<div class="container" style="background-color: white; border-radius: 5px;">
+    <h2> Register as a course tutor: </h2>
+    <hr>
+    <form action="." method="POST" >
+        <label for="content">Course Title</label> 
+        <input class="form-control" type="text" name='course_title' id='title' placeholder="eg. HTML5, CSS3 ..." aria-label="Enter Course Title" required>
+        <br>
+        <div class="row" style="inline">
+            <div class="col-sm-6">
+                <label for="content">Author</label>
+                <input class="form-control" type="text" name='author' id='author' value="{{ request.user }}" 
+                placeholder="{{ request.user }}" aria-label="Enter Author">
+                 <br>
+            </div>
+            <div class="col-sm-6">
+              <label for="category"> Category </label> 
+              <input class="form-control" type="text" placeholder="eg. Data Science, ML ..." name="category">
+              <br>
+            </div>
+          </div>
+        <label for="content"> Qualifications </label>
+        <input class="form-control" name="qualifications" id="qualifications" placeholder="eg. Certified Data Scientist ..." ></input>
+        <br>
+        <label>Select a file to upload: </label>
+        <input type="file" name="file"><br>  
+        <input class="btn btn-success" type="submit" value="Submit">
+    </form>
+    <hr>
+    <p> After submitting this form you'll receive an email. </p>
+</div>
+{% endblock content %}

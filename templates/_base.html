@@ -9,7 +9,7 @@
     <title>{% block title %} CengineLab {% endblock title %}</title>
     <meta name="description" content="A platform for programmers.">
     <meta name="author" content="Koffi-Cobbin: Joetib">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.ico' %}">
     <link rel="stylesheet" href="{% static 'css/all.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
@@ -17,41 +17,53 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/admin.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% block css %}
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
 
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"> {% endblock %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap-3.3.5-dist\css\bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+
+    {% block css %}
+
+    {% endblock %}
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-custom-primary">
+    {% include 'home_header.html' %}
+    <nav class="navbar navbar-expand-lg navbar-fixed-top">
        <div class="container">
         <a class="navbar-brand" href="#"> Logo </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon my-toggler"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/"> CengineLab <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'course:course-list' %}" style="color: white">Courses</a>
+                    <a class="nav-link" href="{% url 'course:course-list' %}">Courses</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile"> Profile </a>
+                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="color: white">
-                        Dropdown link
+                        aria-haspopup="true" aria-expanded="false">
+                        Dropdown
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #f4511e;">
                         <a class="dropdown-item" href="#"> Teams </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#"> CengineHackLab </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#"> Leading Geeks </a>
                     </div>
                 </li>
@@ -62,11 +74,11 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" style="color:white">
+                            aria-haspopup="true" aria-expanded="false">
                             {{ user.email }}
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                            <a class="dropdown-item" href="#"> Profile </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu" style="background-color: #f4511e;">
+                            <a class="dropdown-item" href="/profile"> Profile </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'account_change_password' %}">Change password</a>
                             <div class="dropdown-divider"></div>
@@ -75,10 +87,14 @@
                     </li>
                 </ul>
                 {% else %}
-                <form class="form-inline ml-auto">
-                    <a href="{% url 'account_login' %}" class="btn btn-outline-secondary text-white">Log in</a>
-                    <a href="{% url 'account_signup' %}" class="btn btn-primary ml-2">Sign up</a>
-                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{% url 'account_login' %}" class="nav-item">Log-in</a> 
+                    </li> &nbsp &nbsp
+                    <li class="nav-item">
+                        <a href="{% url 'account_signup' %}" class="nav-item">Sign-up</a>
+                    </li>
+                </ul>
                 {% endif %}
             </nav>
         </div>
@@ -93,31 +109,67 @@
     </main>
 
     <footer class="footer">
+        {% block footer %}
         <div class="container">
             <span class="text-muted">Footer...</span>
         </div>
+        {% endblock %}
     </footer>
 
 
-
-    {% block javascript %}
     <!-- Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <!-- Project JS -->
+  <script src="{% static 'js/base.js' %}"></script>
 
-    <!-- 3rd party JavaScript -->
+<!-- 3rd party JavaScript -->
+<script>
+    $(document).ready(function(){
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+    
+          // Store hash
+          var hash = this.hash;
+    
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function(){
+       
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+      
+      $(window).scroll(function() {
+        $(".slideanim").each(function(){
+          var pos = $(this).offset().top;
+    
+          var winTop = $(window).scrollTop();
+            if (pos < winTop + 600) {
+              $(this).addClass("slide");
+            }
+        });
+      });
+    })
+    </script>
 
-    <!-- Project JS -->
-    <script src="{% static 'js/base.js' %}"></script>
-
-    {% endblock javascript %}
+  {% block javascript %} 
+  
+  {% endblock javascript %}
 
 </body>
 

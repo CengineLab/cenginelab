@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row content">
+    <span class="sidenav-overlay" id="open" onclick="openNav()"> > <!-- &#9776; --> </span>
+    <span class="sidenav-overlay" id="close" onclick="closeNav()"> < <!-- &#9776; --> </span>
+    <div class="col-sm-3 sidenav" id="mySidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="display: none;" id="close-nav"> &times; </a>
+        <!-- User Profile-->
+        <div class="user-profile d-flex no-block dropdown m-t-20">
+            <div class=" "><img src=" " alt="user_image" class=" " width="40"></div>
+            <div>
+                <a href="#" class=" ">
+                    <h5> Koffi Cobbin </h5>
+                </a>
+            </div>
+        </div>
+        <!-- End User Profile-->
+        <a href="#" class="active" role="button" > Dashboard </a></li>
+        <a href="#"> Profile </a>
+        <a href="#"> Trending </a>
+        <a href="#"> Teams </a>
+        <a href="#"> Settings </a>
+        <br>
+    </div>
+
+    <div class="col-sm-9" style="padding-left: 40px;">
+        {% block body %}
+
+        {% endblock %}
+      <hr>
+      </div>
+
+  </div>
+</div>
+
+{% endblock %}

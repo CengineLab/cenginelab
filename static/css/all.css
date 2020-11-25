@@ -4421,3 +4421,118 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
+
+  
+  /* ========================================= NAVBAR ========================================*/
+  .navbar {
+    margin-bottom: 0;
+    margin-top: 0;
+    background-color: #f4511e;
+    z-index: 9999;
+    border: 0;
+    font-size: 15px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #f4511e;
+  }
+
+/* SIDE NAV */
+/* Set gray background color and 100% height */
+.sidenav {
+  height: 100%;
+  left: 0;
+  background-color: #111;
+  bottom: 0; 
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover, .sidenav a.active {
+color: #f1f1f1;
+text-decoration: none;
+}
+
+/* NAV OVERLAY */
+.sidenav-overlay {
+  position: fixed;
+  display: none;
+  width: 10%;
+  height: 10%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
+  font-size: 50px;
+  color: white;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {display: none;} 
+  #open {display: block;}
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {display: none;}
+  #open {display: block;} 
+}
+
+
+/* MENU TOGGLER */
+ .menu{
+  background-color: white;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: rgb(255, 255, 255);
+} 
+
+/* PROFILE TABLE */
+.ptable{
+  width: 100%; 
+  font-size: medium;
+  margin: 0px 30px 20px 0px;
+}
+
+.ptable-row{
+  font-size: medium; 
+  border-bottom: 2px solid blue;
+}
+
+.ptable-th, .ptable-td{
+  text-align: center; 
+  padding: 10px;
+}
+
+/* FOOTER */
+.footer{
+  background-color: black;
+  color: white;
+}

@@ -1,0 +1,88 @@
+{% extends 'base_profile.html' %}
+
+{% block body %}
+<div id="dashboard">
+    <div class="row">
+        <div class="col-md-12 py-3">
+            {% for course in registered_courses %}
+            <div class="col-md-4 py-3">
+                {% include "course/_partials/_course_card.html" %}
+            </div>
+        
+            {% empty %}
+            <div class="col-12 py-3">
+                <p class="text-danger"> Sorry, you have not registered for any courses. </p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 card shadow py-3">
+                <h4><small>Courses Overview</small></h4>
+                <hr>
+                <table class="ptable">
+                    <tr class="ptable-row">
+                        <th class="ptable-th"> Courses </th>
+                        <th class="ptable-th"> Status </th>
+                        <th class="ptable-th"> Projects </th>
+                        <th class="ptable-th"> Certificate </th>
+                    </tr>
+                    <tr class="ptable-row">
+                        <td class="ptable-td"> Python </td>
+                        <td class="ptable-td"> 80% </td>
+                        <td class="ptable-td"> 12 </td>
+                        <td class="ptable-td"> 1 </td>
+                    </tr>
+                    <tr class="ptable-row">
+                        <td class="ptable-td"> Data Science </td>
+                        <td class="ptable-td"> 100% </td>
+                        <td class="ptable-td"> 5 </td>
+                        <td class="ptable-td"> 1 </td>
+                    </tr>
+                    <tr class="ptable-row">
+                        <td class="ptable-td"> HTML </td>
+                        <td class="ptable-td"> 100% </td>
+                        <td class="ptable-td"> 50 </td>
+                        <td class="ptable-td"> 2 </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-6 card shadow py-3">
+                <h4><small> FEEDS </small></h4>
+                <hr>
+                <ul>
+                    <li> You have 3 pending task </li>
+                    <li> You have 1 pending request </li>
+                    <li> You have 2 pending assigments </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+            
+            </div>
+
+            <div class="col-md-6">
+            
+            </div>
+        </div>
+
+    </div>
+</div>  
+
+<div id="profile">
+    <div class="row">
+        <div class="col-md-12">
+            <h4><small>ANOTHER THING HERE</small></h4>
+            <hr>
+            <h2> Something here </h2>
+            <h5><span class="glyphicon glyphicon-time"></span> Koffi-Cobbin messaged you. </h5>
+            <h5><span class="label label-success"> Pro </span></h5><br>
+        </div>
+    </div>
+</div>  
+
+{% endblock %}
